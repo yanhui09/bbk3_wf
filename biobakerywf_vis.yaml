@@ -1,0 +1,15 @@
+channels:
+  - biobakery
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - biobakery_workflows
+  - tbb=2020.2
+  - networkx=1.11
+  - python-leveldb=0.193
+  - pweave=0.25
+  - pandoc
+  - hclust2
+  - r-base
+  - r-vegan
