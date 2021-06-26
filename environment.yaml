@@ -8,3 +8,4 @@ dependencies:
   - tbb=2020.2
   - python-leveldb
   - networkx=1.11
+  - diamond==0.9.36

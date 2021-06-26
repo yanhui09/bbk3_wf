@@ -51,6 +51,8 @@ done
 
 # create a directory if not existed.
 if [ ! -d "$LOCATION" ]; then
+    # reminding notes
+    tput setaf 4
     echo "$LOCATION is created."
 fi
 mkdir -p "$LOCATION"

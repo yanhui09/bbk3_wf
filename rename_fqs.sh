@@ -56,7 +56,7 @@ do
 name=$(basename "$directory")
 cat "$directory"${REGEX_R1} > "$OUTPUT/$name".R1.fq.gz
 cat "$directory"${REGEX_R2} > "$OUTPUT/$name".R2.fq.gz
-# respond the file processing
+# notes for the processed file
 tput setaf 4
 echo "$name gzipped fastqs have been merged as $name.R1.fq.gz and $name.R2.fq.gz under $OUTPUT."
 done

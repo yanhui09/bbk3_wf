@@ -30,6 +30,5 @@ mamba env create -n biobakery -f environment.yaml
 ```
 conda activate biobakery
 metaphlan --install
-biobakery_workflows_databases --install wmgx --location $FOLDER
+biobakery_workflows_databases --install wmgx --location /path/to/custom/location
 ```
-Please replace the `$FOLDER` to a custom location
