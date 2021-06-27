@@ -14,8 +14,13 @@ It contains the installation instruction, and a tutorial to run the workflow usi
 
 ## Installation
 
-**Create a work enviroment for biobakery 3**
+**Clone this Github repository**, and go to the direcotory.
+```
+git clone https://github.com/yanhui09/bbk3_wf.git
+cd bbk3_wf
+```
 
+**Create a work enviroment for biobakery 3**
 ```
 conda env create -n biobakery -f environment.yaml
 ```
