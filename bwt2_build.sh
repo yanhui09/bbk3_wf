@@ -13,8 +13,10 @@ usage () {
     echo "Note: Build bowtie2 databsed for the kneaddata."
     echo ""
     echo "Usage: $0 [-i -t -l -s -o -h]"
-    echo "  -i, --host    Required, ftp link of host genome on ensembl, etc."
-    echo "  E.g. ftp://ftp.ensembl.org/pub/release-103/fasta/gallus_gallus/dna/Gallus_gallus.GRCg6a.dna.toplevel.fa.gz"
+    echo "  -i, --host    Required, ftp link of host genome on ensembl, RefSeq etc.(soft-/un-masked primirary assemblies)"
+    echo "  E.g., https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/003/025/GCF_000003025.6_Sscrofa11.1/GCF_000003025.6_Sscrofa11.1_genomic.fna.gz"
+    echo "  E.g., https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/002/315/GCA_000002315.5_GRCg6a/GCA_000002315.5_GRCg6a_genomic.fna.gz"
+    echo "  E.g., http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz"
     echo "  -t, --threads    Required, the number of the threads. Default: 6."
     echo "  -l, --location    Required, a custom location to hold the built bowtie2 database."
     echo "  -s, --skip_phix    Optional, not including phix genome."
@@ -54,6 +56,7 @@ if [ ! -d "$LOCATION" ]; then
     # reminding notes
     tput setaf 4
     echo "$LOCATION is created."
+    tput sgr0
 fi
 mkdir -p "$LOCATION"
 
@@ -78,11 +81,11 @@ fi
 # Build bowtie2 index
 bowtie2-build $(echo "$LOCATION/*.fa" | sed "s/ /,/g") "$LOCATION/ref" --threads $THREADS
 
-
 # Clean fasta files and print the bowtie2 database location
 rm "$LOCATION/*.fa" -f
 tput setaf 4
 echo "The Bowtie2 database is located at $LOCATION."
 echo "Please assign $LOCATION to environmental viriable \$KNEADDATA_DB_HUMAN_GENOME."
+tput sgr0
 
 exit

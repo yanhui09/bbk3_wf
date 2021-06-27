@@ -23,7 +23,7 @@ usage () {
     echo "  -t, --threads    Required, the number of the threads. Default: 4."
     echo "  -l, --local_jobs    Required, the number of local jobs. Default: 1."
     echo "  -s, --skip    Optional, skip setting environment variables."
-    echo "  -p, --preset    Optional, use presets if the host is Homo sapiens,."
+    echo "  -p, --preset    Optional, use presets if the host is Homo sapiens (GCRh37)."
     echo "  -h, --help      Optional, help message."   
     echo ""
     echo "Example:"
@@ -63,6 +63,7 @@ if [ "$SKIP" == true ]; then
     # warning notes
     tput setaf 4
     echo "Make sure Biobakery environment variables were set manually."
+    tput sgr0
 else
     # environment varibles for database
     export BIOBAKERY_WORKFLOWS_DATABASES="$BIOBAKERY_DB"
@@ -88,6 +89,7 @@ if [ ! -d "$OUTPUT" ]; then
     # reminding notes
     tput setaf 4
     echo "$OUTPUT is created."
+    tput sgr0
 fi
 mkdir -p "$OUTPUT"
 
