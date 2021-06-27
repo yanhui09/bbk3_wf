@@ -9,7 +9,7 @@
 # Wrapped function, e.g. usage()
 usage () {
     echo ""
-    echo "Note: Merge different lanes of reads and rename fastqs to follow biobakery format (*.R{1,2}.fq.gz)."
+    echo "Note: Merge different lanes of reads and rename fastqs to follow biobakery format (*.R{1,2}.fastq.gz)."
     echo ""
     echo "Usage: $0 [-i -r -o -h]"
     echo "  -i, --input    Required, path to the sample-wise diretories holding R1 and R2 fastqs"
@@ -54,9 +54,9 @@ mkdir -p "$OUTPUT"
 for directory in "$INPUT"/*/
 do 
 name=$(basename "$directory")
-cat "$directory"${REGEX_R1} > "$OUTPUT/$name".R1.fq.gz
-cat "$directory"${REGEX_R2} > "$OUTPUT/$name".R2.fq.gz
+cat "$directory"${REGEX_R1} > "$OUTPUT/$name".R1.fastq.gz
+cat "$directory"${REGEX_R2} > "$OUTPUT/$name".R2.fastq.gz
 # notes for the processed file
 tput setaf 4
-echo "$name gzipped fastqs have been merged as $name.R1.fq.gz and $name.R2.fq.gz under $OUTPUT."
+echo "$name gzipped fastqs have been merged as $name.R1.fastq.gz and $name.R2.fastq.gz under $OUTPUT."
 done
