@@ -33,7 +33,8 @@ metaphlan --install
 biobakery_workflows_databases --install wmgx --location /path/to/custom/location
 ```
 
-By default, Biobakery 3 will use *Homo sapiens* GCRh37 as reference to remove host contamination. You can also set custom host reference with `[bwt2_build.sh](/bwt2_build.sh)`.  
+By default, Biobakery 3 will use *Homo sapiens* GCRh37 as reference to remove host contamination. You can also set custom host reference with [`bwt2_build.sh`](/bwt2_build.sh).
+
 ```
 ./bwt2_build.sh -h
 
