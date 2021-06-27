@@ -84,21 +84,19 @@ Use [`biobakery_wmgx.sh`](/biobakery_wmgx.sh) to run the Biobakery whole metagen
 
 Note: The biobakery3 workflow at KU FOOD.
 
-Usage: ./biobakery_wmgx.sh [-b -i -o -k -m -u -t -l -s -p -h]
-  -b, --biobakery_db    Required, path to the biobakery database.
+Usage: ./biobakery_wmgx.sh [-b -i -o -k -m -u -t -l -s -h]
+  -b, --biobakery_db    Required, path to the biobakery database directory.
   -i, --input_fqs    Required, path to the fastq files, cleaned by rename_fq.sh.
   -o, --output    Required, path to a output directory.
-  -k, --knead_db    Required, path to the keaddata database.
-  -m, --metaphlan_db    Required, path to the metaphlan database.
-  -u, --humann_db    Required, path to the humann database.
+  -k, --knead_db    Required, path to the keaddata database directory.
+  -m, --metaphlan_db    Required, path to the metaphlan database directory.
+  -u, --humann_db    Required, path to the humann database directory.
   -t, --threads    Required, the number of the threads. Default: 4.
   -l, --local_jobs    Required, the number of local jobs. Default: 1.
   -s, --skip    Optional, skip setting environment variables.
-  -p, --preset    Optional, use presets if the host is Homo sapiens (GCRh37).
   -h, --help      Optional, help message.
 
 Example:
-./biobakery_wmgx.sh -b /path/to/biobakery/db -k /path/to/knead_db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output
-./biobakery_wmgx.sh -b /path/to/biobakery/db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output -p
+./biobakery_wmgx.sh -b /path/to/biobakery_db -k /path/to/knead_db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output
 
 ```

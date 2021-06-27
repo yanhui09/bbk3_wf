@@ -13,22 +13,20 @@ usage () {
     echo ""
     echo "Note: The biobakery3 workflow at KU FOOD."
     echo ""
-    echo "Usage: $0 [-b -i -o -k -m -u -t -l -s -p -h]"
-    echo "  -b, --biobakery_db    Required, path to the biobakery database."
+    echo "Usage: $0 [-b -i -o -k -m -u -t -l -s -h]"
+    echo "  -b, --biobakery_db    Required, path to the biobakery database directory."
     echo "  -i, --input_fqs    Required, path to the fastq files, cleaned by rename_fq.sh."
     echo "  -o, --output    Required, path to a output directory."
-    echo "  -k, --knead_db    Required, path to the keaddata database."
-    echo "  -m, --metaphlan_db    Required, path to the metaphlan database."
-    echo "  -u, --humann_db    Required, path to the humann database."
+    echo "  -k, --knead_db    Required, path to the keaddata database directory."
+    echo "  -m, --metaphlan_db    Required, path to the metaphlan database directory."
+    echo "  -u, --humann_db    Required, path to the humann database directory."
     echo "  -t, --threads    Required, the number of the threads. Default: 4."
     echo "  -l, --local_jobs    Required, the number of local jobs. Default: 1."
     echo "  -s, --skip    Optional, skip setting environment variables."
-    echo "  -p, --preset    Optional, use presets if the host is Homo sapiens (GCRh37)."
     echo "  -h, --help      Optional, help message."   
     echo ""
     echo "Example:"
-    echo "$0 -b /path/to/biobakery/db -k /path/to/knead_db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output"
-    echo "$0 -b /path/to/biobakery/db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output -p"
+    echo "$0 -b /path/to/biobakery_db -k /path/to/knead_db -m /path/to/metaphlan_db -u /path/to/humann_db -i /path/to/fqs -o /path/to/output"
     echo "";}
 
 #############################################################################
@@ -36,7 +34,7 @@ usage () {
 if [ $# -eq 0 ] || ! [[ $* =~ ^(-|--)[a-z] ]]; then 
     echo "Invalid use: please check the help message below." ; usage; exit 1; fi
 # Params loading
-args=$(getopt --long "biobakery_db:,input_fqs:,output:,knead_db:,metaphlan_db:,humann_db:,threads:,local_jobs:,skip,preset,help" -o "b:i:o:k:m:u:t:l:sph" -n "Input error" -- "$@")
+args=$(getopt --long "biobakery_db:,input_fqs:,output:,knead_db:,metaphlan_db:,humann_db:,threads:,local_jobs:,skip,help" -o "b:i:o:k:m:u:t:l:sh" -n "Input error" -- "$@")
 # Ensure corrected input of params
 if [ $? -ne 0 ]; then usage; exit 1; fi
 
@@ -53,7 +51,6 @@ while true; do
                 -t|--threads) THREADS="$2"; shift 2;;
                 -l|--local_jobs) LOCAL_JOBS="$2"; shift 2;;
                 -s|--skip) SKIP=true; shift 1;; # indicator changed 
-                -p|--preset) PRESET=true; shift 1;; # indicator changed 
                 -h|--help) usage; exit 1; shift 1;;
                 *) break;;    
         esac
@@ -66,12 +63,9 @@ if [ "$SKIP" == true ]; then
     tput sgr0
 else
     # environment varibles for database
-    export BIOBAKERY_WORKFLOWS_DATABASES="$BIOBAKERY_DB"
-    #export STRAINPHLAN_DB_REFERENCE="$BIOBAKERY_DB"/
-    #export STRAINPHLAN_DB_MARKERS="$BIOBAKERY_DB"/
-    if [ "$PRESET" != true ]; then
     export KNEADDATA_DB_HUMAN_GENOME="$KNEAD_DB"
-    fi    
+    export STRAINPHLAN_DB_REFERENCE="$BIOBAKERY_DB/strainphlan_db_reference"
+    export STRAINPHLAN_DB_MARKERS="$BIOBAKERY_DB/strainphlan_db_markers"
 fi    
 
 # THREADS
