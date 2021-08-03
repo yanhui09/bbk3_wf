@@ -118,6 +118,7 @@ biobakery_workflows wmgx --input "$INPUT_FQS" --output "$OUTPUT" --qc-options "$
 --functional-profiling-options "$HUMAnN_OPTIONS" \
 --taxonomic-profiling-options "$MetaPhlAn_OPTIONS" \
 --strain-profiling-options "$StrainPhlAn_OPTIONS" \
---threads $THREADS --local-jobs $LOCAL_JOBS
+--threads $THREADS --local-jobs $LOCAL_JOBS \
+--remove-intermediate-output
 
 exit
