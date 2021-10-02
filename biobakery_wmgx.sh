@@ -112,7 +112,7 @@ MetaPhlAn_OPTIONS+=' --add_viruses'
 # StrainPhlan options
 StrainPhlAn_DB=$(find $METAPHLAN_DB -name '*.pkl')
 StrainPhlAn_OPTIONS='-d '
-StrainPhlAn_OPTIONS+=$StrainPhlAn_DB
+StrainPhlAn_OPTIONS+=$StrainPhlAn_DB # couldn't define database, keep the default one
 
 biobakery_workflows wmgx --input "$INPUT_FQS" --output "$OUTPUT" --qc-options "$QC_OPTIONS" \
 --functional-profiling-options "$HUMAnN_OPTIONS" \
