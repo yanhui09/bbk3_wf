@@ -107,7 +107,7 @@ HUMAnN_OPTIONS+='/uniref'
 # MetaPhlAn options
 MetaPhlAn_OPTIONS='--bowtie2db '
 MetaPhlAn_OPTIONS+=$METAPHLAN_DB
-MetaPhlAn_OPTIONS+=' --add_viruses'
+#MetaPhlAn_OPTIONS+=' --add_viruses' # virus abundance is wired
 
 # StrainPhlan options
 StrainPhlAn_DB=$(find $METAPHLAN_DB -name '*.pkl')
